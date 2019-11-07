@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Alert from './component/alert'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  state={
+    showAlert: false
+  }
+
+  handleClick = () =>{
+    this.setState({ showAlert: !this.state.showAlert})
+  }
+
+  render() {
+
+    const { showAlert } = this.state
+
+    return (
+      <div className="App">
+        <header className="App-header">
+          <button onClick={this.handleClick}> Clique aqui </button>
+
+          <Alert message='Test alert' isWarning onClose={this.handleClick} isOpen={showAlert}/> 
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
